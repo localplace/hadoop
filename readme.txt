@@ -44,9 +44,40 @@ Flume :- Injects data from external systems and puts into the cluster
 
 HBase :- Real time database on top of HDFS
 
-Mahout :- Machine Learnign Library 
+Mahout :- Machine Learning Library 
 
 -------------------------------------------------------
+
+HDFS
+30-05-2017 
+
+1) Example we have blocks called chunks mydata.txt 
+File is split into chunks which is called blocks
+
+2) Default block size is 64MB , each block is given a unique name blk_1 , blk_2 etc 
+
+example 150mb file 64Mb + 64Mb + 22Mb , each block will get stored in one node in the cluster .
+
+DataNode :- there is a daemon that is running in all the machine in the cluster. 
+
+NameNode :- daemon knows which chunks make up which file. 
+(It has metadata).
+
+Some Problems encountered
+
+a) Network Failure.
+b) Disk Failure on DiskNode.
+c) Disk Failure on NameNode.
+
+
+Data Redundancy, Hadoop replicated each block 3 times, 
+When the namenode sees that the blocks have not been replicated, it will make sure that they are replicated.
+
+---------------------------------------------------------
+
+NameNode High Availability 
+
+Namenode needs to copied on the network NFS. Sometime 2 Namenode are configured (Active) and (Standby).
 
 
 
